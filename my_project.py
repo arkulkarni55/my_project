@@ -140,4 +140,4 @@ st.write(prediction_proba)
 
 
 
-# data = session.sql("select count(*) from  CITIBIKES.PUBLIC.TRIPS where end_station_name = 'Central Park S & 6 Ave' limit 10;").toPandas()
+
