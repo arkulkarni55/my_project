@@ -1,6 +1,6 @@
 import os
 
-# from snowflake.snowpark.functions import col
+from snowflake.snowpark.functions import col
 
 import configparser
 
