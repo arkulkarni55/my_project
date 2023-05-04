@@ -1,14 +1,8 @@
 import os
 
-from snowflake.snowpark.functions import col
-
 import configparser
 
 import streamlit as st
-
-from snowflake.snowpark.session import Session
-
-import snowflake.snowpark as snowpark
 
 from snowflake.snowpark import functions as F
 
@@ -113,7 +107,6 @@ st.subheader('Prediction Probability')
 st.bar_chart(prediction_proba)
 
 st.write(prediction_proba)
-
 
 
 
