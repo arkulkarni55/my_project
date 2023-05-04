@@ -1,11 +1,9 @@
 import os
 import configparser
 import streamlit as st
-import sklearn
 import snowflake.connector
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets
 
@@ -91,6 +89,8 @@ st.subheader('Prediction Probability')
 st.bar_chart(prediction_proba)
 
 st.write(prediction_proba)
+
+
 
 
 
