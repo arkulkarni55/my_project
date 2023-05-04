@@ -1,29 +1,11 @@
 import os
-
 import configparser
-
 import streamlit as st
-
-from snowflake.snowpark import functions as F
-
-from snowflake.snowpark.functions import *
-
 import pandas as pd
-
 from sklearn import datasets
-
 from sklearn.ensemble import RandomForestClassifier
-
 import numpy as np
-
-import time
-
 import matplotlib.pyplot as plt
-
-# from snowflake.snowpark.functions import avg, sum, col,lit
-
-from sklearn import datasets
-
 from sklearn.ensemble import RandomForestClassifier
 
 
@@ -107,7 +89,6 @@ st.subheader('Prediction Probability')
 st.bar_chart(prediction_proba)
 
 st.write(prediction_proba)
-
 
 
 
