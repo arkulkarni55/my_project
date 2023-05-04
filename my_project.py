@@ -33,61 +33,37 @@ from sklearn import datasets
 from sklearn.ensemble import RandomForestClassifier
 
 
-#Configure config.ini file path
-
 config = configparser.ConfigParser()
+config.sections()
+config.read('config.ini')
 
-ini_path = os.path.join(os.getcwd(),'config.ini')
-
-config.read(ini_path)
-
-
-
-#Setup config.ini read rules
+#snowflake config
 
 sfAccount = config['Snowflake']['sfAccount']
-
 sfUser = config['Snowflake']['sfUser']
-
 sfPass = config['Snowflake']['sfPass']
-
-sfRole = config['Snowflake']['sfRole']
-
 sfDB = config['Snowflake']['sfDB']
-
 sfSchema = config['Snowflake']['sfSchema']
-
 sfWarehouse = config['Snowflake']['sfWarehouse']
 
 
 
+conn = snowflake.connector.connect(user = sfUser,
+                                    password = sfPass,
+                                    account = sfAccount,
+                                    warehouse = sfWarehouse,
+                                    database = sfDB,
+                                    schema = sfSchema
+                                    )
 
-#Use config file login attributes and create connection parameters
-
-conn = {                            "account": sfAccount,
-
-                                    "user": sfUser,
-
-                                    "password": sfPass,
-
-                                    "role": sfRole,
-
-                                    "warehouse": sfWarehouse,
-
-                                    "database": sfDB,
-
-                                    "schema": sfSchema}
+cs = conn.cursor()
 
 
 
-#Connect to Snowlake and create session
-
-session = Session.builder.configs(conn).create()
-
-
-data_one = session.sql("select count(*) from IRIS_FLOWER.PUBLIC.TABLE_IRIS_FLOWER;").toPandas()
+data_one = pd.read_sql("select count(*) from FLOWER.PUBLIC.IRIS_FLOWER;",conn)
 
 iris = pd.DataFrame(data_one, index=[0])
+
 
 
 st.write("""
@@ -125,7 +101,7 @@ clf.fit(X, Y)
 prediction = clf.predict(df)
 prediction_proba = clf.predict_proba(df)
 
-st.subheader('Class labels and their corresponding index number')
+st.subheader('Flower types and their corresponding index number')
 st.write(iris.target_names)
 
 st.subheader('Prediction')
@@ -137,6 +113,7 @@ st.subheader('Prediction Probability')
 st.bar_chart(prediction_proba)
 
 st.write(prediction_proba)
+
 
 
 
