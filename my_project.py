@@ -3,9 +3,8 @@ import configparser
 import streamlit as st
 import snowflake.connector
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
-from sklearn import datasets
+
 
 
 
