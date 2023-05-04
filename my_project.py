@@ -1,12 +1,13 @@
 import os
 import configparser
 import streamlit as st
+import snowflake.connector
 import pandas as pd
-from sklearn import datasets
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.ensemble import RandomForestClassifier
+from sklearn import datasets
+
 
 
 config = configparser.ConfigParser()
@@ -15,12 +16,12 @@ config.read('config.ini')
 
 #snowflake config
 
-sfAccount = config['Snowflake']['sfAccount']
-sfUser = config['Snowflake']['sfUser']
-sfPass = config['Snowflake']['sfPass']
-sfDB = config['Snowflake']['sfDB']
-sfSchema = config['Snowflake']['sfSchema']
-sfWarehouse = config['Snowflake']['sfWarehouse']
+sfAccount = config['Snowflakes']['sfAccount']
+sfUser = config['Snowflakes']['sfUser']
+sfPass = config['Snowflakes']['sfPass']
+sfDB = config['Snowflakes']['sfDB']
+sfSchema = config['Snowflakes']['sfSchema']
+sfWarehouse = config['Snowflakes']['sfWarehouse']
 
 
 
@@ -77,7 +78,7 @@ clf.fit(X, Y)
 prediction = clf.predict(df)
 prediction_proba = clf.predict_proba(df)
 
-st.subheader('Flower types and their corresponding index number')
+st.subheader('Flower types  and their corresponding index number')
 st.write(iris.target_names)
 
 st.subheader('Prediction')
@@ -89,7 +90,6 @@ st.subheader('Prediction Probability')
 st.bar_chart(prediction_proba)
 
 st.write(prediction_proba)
-
 
 
 
