@@ -1,6 +1,7 @@
 import os
 import configparser
 import streamlit as st
+import sklearn
 import snowflake.connector
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -83,13 +84,14 @@ st.write(iris.target_names)
 
 st.subheader('Prediction')
 st.write(iris.target_names[prediction])
-#st.write(prediction)
+
 
 st.subheader('Prediction Probability')
 
 st.bar_chart(prediction_proba)
 
 st.write(prediction_proba)
+
 
 
 
