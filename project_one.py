@@ -34,3 +34,6 @@ conn = snowflake.connector.connect(user = sfUser,
                                     )
 
 cs = conn.cursor()
+
+
+
