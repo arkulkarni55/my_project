@@ -4,6 +4,8 @@ import streamlit as st
 import snowflake.connector
 import pandas as pd
 from sklearn import datasets
+from snowflake.snowpark import Session
+from snowflake.snowpark.functions import 
 from sklearn.ensemble import RandomForestClassifier
 
 
@@ -32,8 +34,9 @@ conn = snowflake.connector.connect(user = sfUser,
                                     database = sfDB,
                                     schema = sfSchema
                                     )
+session = Session.builder.configs(connection_parameters).create() 
 
-cs = conn.cursor()
-
+dbs = session.sql('show databases ;').collect()
+st.write(dbs)
 
 
